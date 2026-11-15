@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NexoNet | Redes y Telecomunicaciones</title>
+
+    <link rel="stylesheet" href="estilos.css">
+
+    <!-- Biblioteca para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <a href="#inicio" class="logo">Nexo<span>Net</span></a>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#herramientas">Herramientas</a>
+            <a href="#nosotros">Nosotros</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- INICIO -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <p class="etiqueta">TECNOLOGÍA Y TELECOMUNICACIONES</p>
+
+                <h1>Conectando redes,<br>integrando soluciones.</h1>
+
+                <p>
+                    Diseña redes informáticas y analiza las pérdidas
+                    de señal inalámbrica utilizando herramientas
+                    digitales y matemáticas.
+                </p>
+
+                <a href="#herramientas" class="boton">
+                    Explorar herramientas
+                </a>
+            </div>
+
+            <div class="hero-icon">⌘</div>
+        </section>
+
+
+        <!-- HERRAMIENTAS -->
+        <section id="herramientas" class="seccion">
+
+            <div class="titulo-seccion">
+                <p class="etiqueta">NUESTRAS SOLUCIONES</p>
+                <h2>Herramientas digitales</h2>
+                <p>Selecciona una herramienta para comenzar.</p>
+            </div>
+
+            <div class="tarjetas">
+
+                <article class="tarjeta">
+                    <div class="icono">🌐</div>
+                    <h3>Calculadora VLSM</h3>
+
+                    <p>
+                        Calcula subredes, máscaras, direcciones IP,
+                        rangos de hosts y broadcast.
+                    </p>
+
+                    <a href="#vlsm" class="boton-secundario">
+                        Abrir calculadora
+                    </a>
+                </article>
+
+                <article class="tarjeta">
+                    <div class="icono">📶</div>
+                    <h3>Análisis de señal Wi-Fi</h3>
+
+                    <p>
+                        Calcula la atenuación acumulada y la potencia
+                        media recibida mediante cálculo integral.
+                    </p>
+
+                    <a href="#wifi" class="boton-secundario">
+                        Analizar señal
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+
+        <!-- CALCULADORA VLSM -->
+        <section id="vlsm" class="seccion seccion-calculo">
+
+            <div class="titulo-seccion">
+                <p class="etiqueta">HERRAMIENTA 01</p>
+                <h2>Calculadora de subneteo VLSM</h2>
+
+                <p>
+                    Ingresa una red y los requerimientos de hosts
+                    para distribuir las subredes.
+                </p>
+            </div>
+
+            <div class="panel">
+
+                <label for="red">
+                    Dirección de red con prefijo CIDR
+                </label>
+
+                <input
+                    id="red"
+                    type="text"
+                    value="192.168.1.0/24"
+                    placeholder="Ejemplo: 192.168.1.0/24"
+                >
+
+                <label for="hosts">
+                    Cantidad de hosts por subred
+                </label>
+
+                <textarea
+                    id="hosts"
+                    rows="4"
+                    placeholder="Ejemplo: 100, 50, 20, 10"
+                ></textarea>
+
+                <small>
+                    Separa las cantidades con comas o saltos de línea.
+                </small>
+
+                <button onclick="calcularVLSM()">
+                    Calcular subredes
+                </button>
+
+                <div id="resultadoVLSM" class="resultado"></div>
+
+            </div>
+        </section>
+
+
+        <!-- CALCULADORA WIFI -->
+        <section id="wifi" class="seccion">
+
+            <div class="titulo-seccion">
+                <p class="etiqueta">HERRAMIENTA 02</p>
+                <h2>Análisis de pérdidas de señal Wi-Fi</h2>
+
+                <p>
+                    Analiza la atenuación y potencia recibida
+                    mediante el modelo log-distancia y cálculo integral.
+                </p>
+            </div>
+
+            <div class="panel">
+
+                <h3>Datos de propagación</h3>
+
+                <label for="distanciaReferencia">
+                    Distancia de referencia (d₀), en metros
+                </label>
+
+                <input
+                    type="number"
+                    id="distanciaReferencia"
+                    min="0.01"
+                    step="0.1"
+                    value="1"
+                >
+
+                <label for="distanciaInicial">
+                    Inicio del recorrido (a), en metros
+                </label>
+
+                <input
+                    type="number"
+                    id="distanciaInicial"
+                    min="0.01"
+                    step="0.1"
+                    value="1"
+                >
+
+                <label for="distanciaFinal">
+                    Final del recorrido (b), en metros
+                </label>
+
+                <input
+                    type="number"
+                    id="distanciaFinal"
+                    min="0.02"
+                    step="0.1"
+                    value="10"
+                >
+
+                <label for="exponente">
+                    Exponente de pérdidas (n)
+                </label>
+
+                <input
+                    type="number"
+                    id="exponente"
+                    min="0.01"
+                    step="0.1"
+                    value="2"
+                >
+
+                <label for="perdidaReferencia">
+                    Pérdida de referencia L₀ (dB)
+                </label>
+
+                <input
+                    type="number"
+                    id="perdidaReferencia"
+                    min="0"
+                    step="0.1"
+                    value="40"
+                >
+
+                <label for="potenciaTransmitida">
+                    Potencia transmitida P₀ (dBm)
+                </label>
+
+                <input
+                    type="number"
+                    id="potenciaTransmitida"
+                    step="0.1"
+                    value="20"
+                >
+
+
+                <h3 style="margin-top: 30px;">
+                    Obstáculos de la vivienda
+                </h3>
+
+                <label for="cantidadMuros">
+                    Cantidad de muros u obstáculos
+                </label>
+
+                <input
+                    type="number"
+                    id="cantidadMuros"
+                    min="0"
+                    step="1"
+                    value="1"
+                >
+
+                <label for="perdidaMuro">
+                    Pérdida estimada por cada muro (dB)
+                </label>
+
+                <input
+                    type="number"
+                    id="perdidaMuro"
+                    min="0"
+                    step="0.1"
+                    value="5"
+                >
+
+                <small>
+                    Para este modelo se considera que los obstáculos
+                    indicados ya se encuentran en el recorrido analizado.
+                </small>
+
+                <button onclick="calcularWiFi()">
+                    Calcular análisis Wi-Fi
+                </button>
+
+                <div id="resultadoWiFi" class="resultado"></div>
+
+            </div>
+
+
+            <!-- GRAFICO -->
+            <div class="explicacion">
+
+                <h3>Gráfico de potencia recibida</h3>
+
+                <p>
+                    Representación de la potencia estimada a medida
+                    que aumenta la distancia respecto al punto de acceso.
+                </p>
+
+                <canvas id="graficoWiFi"></canvas>
+
+            </div>
+
+
+            <!-- FORMULAS -->
+            <div class="explicacion">
+
+                <h3>Modelos matemáticos utilizados</h3>
+
+                <p><strong>1. Modelo log-distancia</strong></p>
+
+                <div class="formula">
+                    L(d) = L₀ + 10n log₁₀(d/d₀)
+                </div>
+
+                <p><strong>2. Atenuación por unidad de distancia</strong></p>
+
+                <div class="formula">
+                    A(x) = 10n / (x · ln 10)
+                </div>
+
+                <p><strong>3. Pérdida acumulada por distancia</strong></p>
+
+                <div class="formula">
+                    Ldist = ∫ₐᵇ A(x) dx
+                </div>
+
+                <p><strong>4. Pérdida por muros</strong></p>
+
+                <div class="formula">
+                    Lmuros = Σ wk
+                </div>
+
+                <p><strong>5. Pérdida total</strong></p>
+
+                <div class="formula">
+                    Ltotal = L₀ + Ldist + Lmuros
+                </div>
+
+                <p><strong>6. Potencia recibida</strong></p>
+
+                <div class="formula">
+                    P(x) = P₀ − L(x)
+                </div>
+
+                <p><strong>7. Potencia media en mW</strong></p>
+
+                <div class="formula">
+                    Pmedia = (1/(b−a)) ∫ₐᵇ 10^(P(x)/10) dx
+                </div>
+
+                <p><strong>8. Potencia media en dBm</strong></p>
+
+                <div class="formula">
+                    Pmedia(dBm) = 10 log₁₀(Pmedia en mW)
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NOSOTROS -->
+        <section id="nosotros" class="seccion nosotros">
+
+            <p class="etiqueta">CONOCE NUESTRO PROYECTO</p>
+
+            <h2>¿Qué es NexoNet?</h2>
+
+            <p>
+                NexoNet es una empresa tecnológica ficticia orientada
+                al desarrollo de soluciones digitales para redes
+                informáticas y telecomunicaciones. Busca integrar
+                herramientas matemáticas y tecnológicas para facilitar
+                el diseño de subredes y el análisis de señales inalámbricas.
+            </p>
+
+            <div class="valores">
+
+                <div>
+                    <strong>Innovación</strong>
+                    <p>Aplicamos tecnología para resolver problemas.</p>
+                </div>
+
+                <div>
+                    <strong>Conocimiento</strong>
+                    <p>Integramos las matemáticas con las redes.</p>
+                </div>
+
+                <div>
+                    <strong>Conectividad</strong>
+                    <p>Buscamos mejorar el análisis de infraestructuras.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <h3>NexoNet</h3>
+        <p>Conectando redes, integrando soluciones.</p>
+        <p>Proyecto académico de telecomunicaciones | 2026</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
